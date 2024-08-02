@@ -1,0 +1,23 @@
+.container {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .btn {
+    width: 60px;
+    height: 60px;
+    margin: 20px;
+    border-radius: 100px;
+    border: solid #FEE500;
+    background-color: #FFFFFF;
+    font-size: 28px;
+  
+    &:hover {
+      background-color: #FFF38A;
+    }
+  }
+  
+  .mapLevel {
+    margin-top: 35px;
+    font-size: 16px;
+  }

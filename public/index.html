@@ -25,6 +25,11 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>React App</title>
+    <script type="text/javascript"
+    src="//dapi.kakao.com/v2/maps/sdk.js?appkey=%REACT_APP_KAKAO_KEY%&autoload=false"
+    defer
+    ></script>
+    
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
@@ -39,5 +44,16 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+    
+
+    <script type="text/javascript">
+      window.onload = function() {
+        if (typeof kakao !== 'undefined') {
+          console.log('Kakao Maps SDK loaded successfully.');
+        } else {
+          console.log('Failed to load Kakao Maps SDK.');
+        }
+      };
+    </script>
   </body>
 </html>
