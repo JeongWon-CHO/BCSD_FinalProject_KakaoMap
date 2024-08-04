@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { getMap } from '../utils/KakaoMapApi';
-
+import styles from '../component/ChangeMapType.module.scss';
 
 function ChangeMapType() {
 
@@ -35,26 +35,38 @@ function ChangeMapType() {
         return;
     }
 
-
     map.addOverlayMapTypeId(mapTypeId);
-
 
     return () => {
       map.removeOverlayMapTypeId(mapTypeId);
     };
   }, [type]);
 
-
   return (
-    <div>
-      <button className='btn_traffic' onClick={() => setType('traffic')}>Traffic</button>
-      <button className='btn_roadview' onClick={() => setType('roadview')}>Roadview</button>
-      <button className='btn_terrain' onClick={() => setType('terrain')}>Terrain</button>
-      <button className='btn_useDistrict' onClick={() => setType('use_district')}>Use District</button>
-      <button className='btn_nomal' onClick={() => setType('normal')}>Normal</button>
+    <div className={styles.container_btn}>
+
+      <span>
+        <button className={styles.btn_nomal} onClick={() => setType('normal')}>기본</button>
+      </span>
+
+      <span>
+        <button className={styles.btn_traffic} onClick={() => setType('traffic')}>교통정보</button>
+      </span>
+
+      <span>
+        <button className={styles.btn_roadview} onClick={() => setType('roadview')}>로드뷰</button>
+      </span>
+      
+      <span>
+        <button className={styles.btn_terrain} onClick={() => setType('terrain')}>지형</button>
+      </span>
+      
+      <span>
+        <button className={styles.btn_useDistrict} onClick={() => setType('use_district')}>지적편집</button>
+      </span>
+      
     </div>
   );
 }
-
 
 export default ChangeMapType;

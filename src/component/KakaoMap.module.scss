@@ -1,11 +1,10 @@
 .mapContainer {
     display: flex;
-    justify-content: center;
+    justify-content: right;
   }
   
   .mapSize {
-    margin-top: 100px;
-    width: 70%;
-    height: 550px;
+    width: 100vw;
+    height: 100vh;
     text-align: center;
   }

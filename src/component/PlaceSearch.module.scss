@@ -1,0 +1,110 @@
+.map_search_container {
+
+    width: 365px;
+    height: 45px;
+    border-radius: 10px;
+    background-color: #ffffff;
+    
+    margin-top: 10px;
+    margin-left: 10px;
+
+    .map_searchBox {
+
+        float: left;
+        width: 305px;
+        height: 30px;
+
+        border-radius: 6px;
+        border: 0;
+
+        padding-left: 10px;
+        padding-top: 5px;
+
+        margin-top: 3px;
+
+        outline: none;
+
+    }
+
+    .btn_container {
+
+        position: absolute;
+        float: right;
+        background-color: #ffffff;
+        border: none;
+        border-radius: 20px;
+
+        margin-right: 30px;
+        margin-top: 5px;
+
+        .search_icon {
+            filter: invert(99%) sepia(0%) saturate(1140%) hue-rotate(180deg) brightness(84%) contrast(91%);
+                        
+
+            & :hover {
+                filter: invert(16%) sepia(1%) saturate(0%) hue-rotate(19deg) brightness(97%) contrast(80%);
+            }
+
+        }
+    }
+
+}
+
+
+
+
+    .map_container {
+        display: flex;
+
+            .map_search_container {
+
+                width: 365px;
+                height: 45px;
+                border-radius: 10px;
+                background-color: #ffffff;
+                
+                margin-top: 10px;
+                margin-left: 10px;
+
+                .map_searchBox {
+                    
+                    float: left;
+                    width: 305px;
+                    height: 30px;
+    
+                    border-radius: 6px;
+                    border: 0;
+    
+                    padding-left: 10px;
+                    padding-top: 5px;
+
+                    margin-top: 3px;
+
+                    outline: none;
+                }
+
+                .btn_container {
+
+                    position: absolute;
+                    float: right;
+                    background-color: #ffffff;
+                    border: none;
+                    border-radius: 20px;
+
+                    margin-right: 30px;
+                    margin-top: 5px;
+
+                    .search_icon {
+                        
+                        filter: invert(99%) sepia(0%) saturate(1140%) hue-rotate(180deg) brightness(84%) contrast(91%);
+                        
+
+                        & :hover {
+                            filter: invert(16%) sepia(1%) saturate(0%) hue-rotate(19deg) brightness(97%) contrast(80%);
+                        }
+                    }
+
+                }
+
+            }
+        }

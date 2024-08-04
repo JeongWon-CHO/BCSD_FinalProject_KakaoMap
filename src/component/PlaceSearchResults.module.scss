@@ -1,0 +1,24 @@
+.listContainer {
+    float: left;
+    width: 300px;
+
+    .list_title {
+        font-weight: 600;
+        margin-left: 20px;
+        margin-bottom: 20px;
+        margin-top: 110px;
+    }
+
+    .resultsList {
+    
+        .resultItem {
+    
+            list-style: none;
+            margin-bottom: 15px;
+            margin-left: -18px;
+
+            font-size: 12px;
+    
+        }
+    }
+}

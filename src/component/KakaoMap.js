@@ -4,6 +4,7 @@ import styles from './KakaoMap.module.scss';
 
 
 const KakaoMap = ({ setLevel }) => {
+
   useEffect(() => {
     const initialize = async () => {
       try {
