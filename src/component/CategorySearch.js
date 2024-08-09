@@ -9,6 +9,8 @@ function CategorySearch() {
             return;
         }
 
+        let markers = []; // 마커를 저장할 배열
+
         const initializeCategorySearch = () => {
             const map = getMap();
             if (!map || typeof map.getCenter !== 'function') {
@@ -23,6 +25,10 @@ function CategorySearch() {
 
                 ps.categorySearch(category, (data, status) => {
                     if (status === window.kakao.maps.services.Status.OK) {
+                        // 기존 마커 삭제
+                        removeMarkers();
+
+                        // 새로운 마커 표시
                         data.forEach(place => {
                             displayMarker(place);
                         });
@@ -36,13 +42,22 @@ function CategorySearch() {
                     position: new window.kakao.maps.LatLng(place.y, place.x),
                 });
 
+                // 클릭 이벤트 추가
                 window.kakao.maps.event.addListener(marker, 'click', function () {
                     infowindow.setContent('<div style="padding:5px;font-size:12px;">' + place.place_name + '</div>');
                     infowindow.open(map, marker);
                 });
+
+                markers.push(marker); // 배열에 마커 추가
             };
 
-            // Initialize buttons after map is ready
+            // 기존 마커를 제거하는 함수
+            const removeMarkers = () => {
+                markers.forEach(marker => marker.setMap(null));
+                markers = [];
+            };
+
+            document.getElementById('clean-button').onclick = () => removeMarkers();
             document.getElementById('convenience-store-button').onclick = () => searchByCategory('CS2');
             document.getElementById('restaurant-button').onclick = () => searchByCategory('FD6');
             document.getElementById('bank-button').onclick = () => searchByCategory('BK9');
@@ -56,9 +71,9 @@ function CategorySearch() {
     }, []);
 
     return (
-
         <div>
             <div id="category-buttons">
+                <button id="clean-button" className={style.btn_clean}>초기화</button>
                 <button id="convenience-store-button" className={style.btn_convenience}>편의점</button>
                 <button id="restaurant-button" className={style.btn_restaurant}>음식점</button>
                 <button id="bank-button" className={style.btn_bank}>은행</button>
@@ -66,7 +81,6 @@ function CategorySearch() {
                 <button id="cafe-button" className={style.btn_cafe}>카페</button>
             </div>
         </div>
-        
     );
 }
 

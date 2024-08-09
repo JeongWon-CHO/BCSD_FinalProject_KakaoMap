@@ -52,7 +52,6 @@ function PlaceSearchResults({ keyword }) {
     return (
 
         <div className={style.listContainer}>
-            <p className={style.list_title}>검색 결과</p>
             <ul className={style.resultsList}>
                 {places.map((place, index) => (
                     <li key={index} className={style.resultItem}>

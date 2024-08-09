@@ -1,4 +1,10 @@
 import React, { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route, NavLink } from 'react-router-dom';
+
+import PlaceSearchPage from '../page/PlaceSearchPage';
+import DirectionsPage from '../page/DirectionsPage';
+import MyPage from '../page/MyPage';
+
 import MapControls from '../component/MapControls';
 import ChangeMapType from '../component/ChangeMapType';
 import KakaoMap from '../component/KakaoMap';
@@ -9,86 +15,93 @@ import logo_kakao from '../img/logo_kakaomap_en.png';
 import PlaceSearchInput from '../component/PlaceSearchInput';
 import PlaceSearchResults from '../component/PlaceSearchResults';
 import CategorySearch from '../component/CategorySearch';
+import Roadview from '../component/Roadview';
 
 
 //<MapControls level={level} />
 
 function MapPage() {
-
     const [level, setLevel] = useState(3);
     const [searchKeyword, setSearchKeyword] = useState('');
+    const [roadviewVisible, setRoadviewVisible] = useState(false);
 
     const handleSearch = (keyword) => {
         setSearchKeyword(keyword);
     };
 
-    return (
-        <div className={style.map_page}>
+    const toggleRoadview = () => {
+        setRoadviewVisible(!roadviewVisible);
+    };
 
-            <div className={style.map_container}>
-                
-                <div className={style.map_control}>
+    return (
+        <Router>
+            <div className={style.map_page}>
+                <div className={style.map_container}>
 
                     <div className={style.side_header}>
-                        
                         <div className={style.logo_container}>
                             <img src={logo_kakao} alt='kakao map' className={style.logo_kakaoMap_text} />
                         </div>
-                        
 
-                        <div className={style.map_search_container_2}>
+                        <div>
                             <PlaceSearchInput onSearch={handleSearch} />
                         </div>
-                        
-                    </div>
 
-                    <div className={style.map_menu_container}>
 
-                        <ul className={style.map_menu}>
-                            <li className={style.search_tap_1}>
-                                <a>검색</a>
-                            </li>
-
-                            <li className={style.search_tap_2}>
-                                <a href="https://map.kakao.com/link/roadview/18577297">예비</a>
-                            </li>
-
-                            <li className={style.search_tap_3}>
-                                <a>MY</a>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div className={style.mapMode_container}>
-                        <p className={style.mapMode_title}>지도 모드</p>
-                        <div>
-                            <ChangeMapType />
+                        <div className={style.map_menu_container}>
+                            <ul className={style.map_menu}>
+                                <li className={style.menu_tap_1}>
+                                    <NavLink to="/search" className={({ isActive }) => isActive ? style.active : undefined}>검색</NavLink>
+                                </li>
+                                <li className={style.menu_tap_2}>
+                                    <NavLink to="/directions" className={({ isActive }) => isActive ? style.active : undefined}>길찾기</NavLink>
+                                </li>
+                                <li className={style.menu_tap_3}>
+                                    <NavLink to="/my" className={({ isActive }) => isActive ? style.active : undefined}>MY</NavLink>
+                                </li>
+                            </ul>
                         </div>
-                        <hr className={style.hr_1}></hr>
+
+
+                        <div className={style.content_container}>
+                            <Routes>
+                                <Route path="/search" element={<PlaceSearchPage searchKeyword={searchKeyword} handleSearch={handleSearch} />} />
+                                <Route path="/directions" element={<DirectionsPage />} />
+                                <Route path="/my" element={<MyPage />} />
+                                <Route path="/" element={<PlaceSearchPage searchKeyword={searchKeyword} handleSearch={handleSearch} />} />
+                            </Routes>
+                        </div>
+
                     </div>
-                </div>
 
-                <div className={style.search_list_container}>
-                    <PlaceSearchResults keyword={searchKeyword} />
-                </div>
+                    
 
-                <div className={style.category_container}>
-                    <p className={style.mapMode_title}>카테고리</p>
-                    <div>
-                        <CategorySearch />
+                    
+
+                    <div className={style.map_display}>
+                        <KakaoMap setLevel={setLevel} />  {/* 지도 */}
+                        <div className={style.roadview_container}>
+                            {roadviewVisible && (
+                                <Roadview
+                                    isVisible={roadviewVisible}
+                                    setRoadviewVisible={setRoadviewVisible}
+                                    className={style.roadview_size} />
+                            )}
+                            {!roadviewVisible && (
+                                <div className={style.roadview_control_container}>
+                                    <button onClick={toggleRoadview} className={style.roadview_button}>
+                                        로드뷰 보기
+                                    </button>
+                                </div>
+                            )}
+                        </div>
                     </div>
-                    <hr className={style.hr_1}></hr>
-                </div>
 
-                <div className={style.map_display}>
-                    <KakaoMap setLevel={setLevel} />
+                    
                 </div>
-                
             </div>
-            
-        </div>
+        </Router>
     );
-    
 }
 
 export default MapPage;

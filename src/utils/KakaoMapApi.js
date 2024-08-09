@@ -54,7 +54,7 @@ export const InitializeMap = async (setLevel) => {
 
       window.map = map; // 전역 변수로 설정하여 getMap에서 접근 가능하도록 설정
       mapInitialized = true;
-      mapReadyCallbacks.forEach(callback => callback());
+      mapReadyCallbacks.forEach(callback => callback()); // 대기 중인 모든 콜백을 호출
       console.log("지도 초기화 완료");
     });
   } catch (error) {
