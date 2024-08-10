@@ -1,0 +1,17 @@
+.divCenter {
+    text-align: center;
+    height: 55vh;
+
+    .boxBackground {
+        width: 300px;
+        height: 300px;
+        margin: 20px;
+        background-color: #FEE500;
+        display: inline-block;
+        
+        &:hover {
+            transition: all 1s;
+            background-color: #FFF06B;
+        }
+    }
+}

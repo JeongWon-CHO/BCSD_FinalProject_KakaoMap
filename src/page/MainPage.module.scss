@@ -1,58 +1,78 @@
-.boxBackground {
-    width: 300px;
-    height: 300px;
-    margin: 20px;
-    background-color: #FEE500;
-    display: inline-block;
-    
-    &:hover {
-      transition: all 1s;
-      background-color: #FFF06B;
+.contents_container::-webkit-scrollbar {
+  display: none;
+}
+
+.headerBlock {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.divCenter {
+  margin-top: 10vh;
+  text-align: center;
+}
+
+.title {
+  font-size: 48px;
+  font-weight: bold;
+}
+
+.navTag {
+  display: inline-block;
+}
+
+.blankSpace {
+  height: 30vh;
+}
+
+.btn_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.scroll_btn {
+  border: none;
+  transition: 0.3s;
+  position: relative;
+  background: transparent;
+  padding: 10px 20px;
+  font-size: 25px;
+  cursor: pointer;
+  overflow: hidden;
+
+  &::before,
+  &::after {
+    position: absolute;
+    content: "";
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: #FEE500;
+    opacity: 0;
+    transform: scaleX(0);
+    transition: 0.4s ease-in-out;
+  }
+
+  &::before {
+    top: 0;
+  }
+
+  &::after {
+    bottom: 0;
+  }
+
+  &:hover {
+    letter-spacing: 5px;
+    color: var(--btn-bg);
+    background: transparent;
+
+    &::before,
+    &::after {
+      opacity: 1;
+      transform: scaleX(1.2);
     }
   }
-  
-  .headerBlock {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 30px;
-  }
-  
-  .divCenter {
-    text-align: center;
-  }
-  
-  .title {
-    font-size: 48px;
-    font-weight: bold;
-  }
-  
-  .navTag {
-    display: inline-block;
-  }
-  
-  .logoLeft {
-    text-align: left;
-    font-size: 28px;
-    margin-left: 6%;
-    display: inline-block;
-    justify-content: space-between;
-  }
-  
-  .ulNav {
-    display: flex;
-    justify-content: space-between;
-    font-size: 16px;
-    margin-right: 20px;
-    display: inline-block;
-    
-    li {
-      display: inline-block;
-      margin-right: 100px;
-      
-      a {
-        text-decoration: none;
-        color: #191919;
-      }
-    }
-  }
+}

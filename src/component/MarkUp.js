@@ -37,7 +37,7 @@ function MarkUp() {
     setMarker(newMarker);
 
     const newInfowindow = new window.kakao.maps.InfoWindow({
-      content: "Hello",
+      content: "하이",
       removable: true,
     });
     setInfowindow(newInfowindow);
@@ -61,7 +61,7 @@ function MarkUp() {
     window.kakao.maps.load(() => {
       const map = getMap();
       if (!map) {
-        console.error("지도가 없습니다!");
+        console.error("지도가 없습니다.");
         return;
       }
 
@@ -80,7 +80,7 @@ function MarkUp() {
 
   return (
     <div>
-      <p>{message}</p>
+      {/* <p>{message}</p> */}
     </div>
   );
 }

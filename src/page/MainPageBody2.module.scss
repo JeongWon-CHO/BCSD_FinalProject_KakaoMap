@@ -1,0 +1,30 @@
+.blankSpace {
+    height: 10vh;
+}
+
+.title_container {
+    margin-top: 10vh;
+    text-align: center;
+    .title {
+        font-size: 48px;
+        font-weight: bold;
+    }
+}
+
+.divCenter {
+    text-align: center;
+    height: 50vh;
+
+    .boxBackground {
+        width: 300px;
+        height: 300px;
+        margin: 20px;
+        background-color: #FEE500;
+        display: inline-block;
+        
+        &:hover {
+            transition: all 1s;
+            background-color: #FFF06B;
+        }
+    }
+}
