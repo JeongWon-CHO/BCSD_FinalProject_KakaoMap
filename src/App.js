@@ -13,12 +13,15 @@ import MainPage from './page/MainPage';
 function App() {
   const [level, setLevel] = useState(3);
 
+  /* 
   return (
     <div>
       <MainPage />
     </div>
   )
-  /* 
+  */
+
+  
   return (
     <div>
       <MapPage />
@@ -27,7 +30,7 @@ function App() {
       </div>
     </div>
   );
-  */
+  
 }
 
 

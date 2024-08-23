@@ -8,7 +8,6 @@ import MyPage from '../page/MyPage';
 import MapControls from '../component/MapControls';
 import ChangeMapType from '../component/ChangeMapType';
 import KakaoMap from '../component/KakaoMap';
-import PlaceSearch from '../component/PlaceSearch';
 import style from './MapPage.module.scss';
 import search_img from '../img/search-icon.png';
 import logo_kakao from '../img/logo_kakaomap_en.png';
@@ -16,14 +15,13 @@ import PlaceSearchInput from '../component/PlaceSearchInput';
 import PlaceSearchResults from '../component/PlaceSearchResults';
 import CategorySearch from '../component/CategorySearch';
 import Roadview from '../component/Roadview';
-
-
-//<MapControls level={level} />
+import MarkUp from '../component/MarkUp'; // 추가한 MarkUp 컴포넌트
 
 function MapPage() {
     const [level, setLevel] = useState(3);
     const [searchKeyword, setSearchKeyword] = useState('');
     const [roadviewVisible, setRoadviewVisible] = useState(false);
+    const [markersVisible, setMarkersVisible] = useState(true); // 마커 표시 여부 상태
 
     const handleSearch = (keyword) => {
         setSearchKeyword(keyword);
@@ -31,6 +29,10 @@ function MapPage() {
 
     const toggleRoadview = () => {
         setRoadviewVisible(!roadviewVisible);
+    };
+
+    const toggleMarkers = () => {
+        setMarkersVisible(!markersVisible); // 마커 On/Off 상태 변경
     };
 
     return (
@@ -47,7 +49,6 @@ function MapPage() {
                             <PlaceSearchInput onSearch={handleSearch} />
                         </div>
 
-
                         <div className={style.map_menu_container}>
                             <ul className={style.map_menu}>
                                 <li className={style.menu_tap_1}>
@@ -62,7 +63,6 @@ function MapPage() {
                             </ul>
                         </div>
 
-
                         <div className={style.content_container}>
                             <Routes>
                                 <Route path="/search" element={<PlaceSearchPage searchKeyword={searchKeyword} handleSearch={handleSearch} />} />
@@ -74,12 +74,10 @@ function MapPage() {
 
                     </div>
 
-                    
-
-                    
-
                     <div className={style.map_display}>
                         <KakaoMap setLevel={setLevel} />  {/* 지도 */}
+                        <MarkUp markersVisible={markersVisible} /> {/* 마커 표시 상태에 따라 MarkUp 제어 */}
+
                         <div className={style.roadview_container}>
                             {roadviewVisible && (
                                 <Roadview
@@ -92,12 +90,14 @@ function MapPage() {
                                     <button onClick={toggleRoadview} className={style.roadview_button}>
                                         로드뷰 보기
                                     </button>
+
+                                    <button onClick={toggleMarkers} className={style.roadview_button}>
+                                        마커 {markersVisible ? "Off" : "On"}
+                                    </button>
                                 </div>
                             )}
                         </div>
                     </div>
-
-                    
                 </div>
             </div>
         </Router>
