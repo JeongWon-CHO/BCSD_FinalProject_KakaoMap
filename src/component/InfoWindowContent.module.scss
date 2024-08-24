@@ -4,7 +4,12 @@
     background-color: white;
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    margin-top: 5px; /* 인포윈도우를 위로 이동 */
+    margin-left: -105px;
+    transform: translateY(-150px); /* 인포윈도우를 위로 이동 */
+    position: relative;
 }
+
 
 .infowindow button {
     margin-top: 10px;

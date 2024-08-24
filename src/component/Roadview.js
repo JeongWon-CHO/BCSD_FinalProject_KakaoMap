@@ -142,10 +142,32 @@ function Roadview({ isVisible, setRoadviewVisible }) {
   
 
   const closeRoadview = () => {
-    if (!marker) return;
+    if (!marker || !roadview) return;
+
+    const map = getMap();
+    if (!map) return;
+
+    // 로드뷰 맵 타입 제거
+    try {
+        map.removeOverlayMapTypeId(window.kakao.maps.MapTypeId.ROADVIEW);
+        console.log("ROADVIEW overlay removed");
+    } catch (error) {
+        console.error("Failed to remove ROADVIEW overlay:", error);
+    }
+
+    // 로드뷰 컨테이너를 숨기기
+    const rvContainer = document.querySelector(`.${style.roadview}`);
+    if (rvContainer) {
+        rvContainer.style.display = 'none';
+        console.log("ROADVIEW container hidden");
+    }
+
+    // 마커를 지도에서 제거
+    marker.setMap(null);
+
     setRoadviewVisible(false); // 로드뷰 상태를 숨기기 상태로 설정
     toggleMapWrapper(true, marker.getPosition());
-  };
+};
 
   return (
     <div className={style.roadview_container}>

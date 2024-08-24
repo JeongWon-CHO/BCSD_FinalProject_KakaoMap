@@ -1,4 +1,6 @@
-// MemoModal.module.scss
+@import url('//fonts.googleapis.com/earlyaccess/notosanskr.css');
+
+
 .modalOverlay {
     position: fixed;
     top: 0;
@@ -16,16 +18,48 @@
     background-color: white;
     padding: 20px;
     border-radius: 5px;
-    width: 300px;
-    max-width: 100%;
+    width: 650px;
+    height: 330px;
 }
 
 .modalActions {
-    display: flex;
-    justify-content: flex-end;
-    margin-top: 10px;
+    position: relative;
+    left: 537px;
+    bottom: 325px;
+}
+
+.modalButton {
+    position: relative;
+    background-color: #258fff;
+    color: #ffffff;
+    border-radius: 6px;
+    border: none;
+
+    font-family: 'notosanskr';
+
+    width: 100px;
+    height: 40px;
+
+    margin-bottom: 20px;
+
+    &:hover {
+        background-color: #217bdc;
+
+    }
 }
 
 button {
     margin-left: 10px;
+}
+
+.textareaBox {
+    width: 500px;
+    height: 300px;
+    padding: 10px;
+    resize: none;
+
+    font-family: 'notosanskr';
+
+    border: solid #777a7e;
+    border-radius: 6px;
 }

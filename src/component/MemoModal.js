@@ -15,11 +15,20 @@ function MemoModal({ onClose, onSave }) {
                 <textarea
                     value={memo}
                     onChange={(e) => setMemo(e.target.value)}
-                    placeholder="메모를 입력하세요"
+                    placeholder="메모를 입력하세요."
+                    className={style.textareaBox}
                 />
+                
                 <div className={style.modalActions}>
-                    <button onClick={handleSave}>저장</button>
-                    <button onClick={onClose}>닫기</button>
+                    <div>
+                        <button className={style.modalButton} onClick={handleSave}>저장</button>
+                    </div>
+                    
+                    <div>
+                        <button className={style.modalButton} onClick={onClose}>닫기</button>
+                    </div>
+                    
+                    
                 </div>
             </div>
         </div>

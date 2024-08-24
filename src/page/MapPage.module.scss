@@ -5,12 +5,11 @@
         display: flex;
 
         .side_header {
-            width:  23vw;
+            width: 23vw;
             height: 116px;
             background-color: #258FFF;
 
-            .logo_container{
-
+            .logo_container {
                 margin-left: 20px;
 
                 .logo_kakaoMap_text {
@@ -19,95 +18,106 @@
                 }
             }
 
-
             .map_menu_container {
                 .map_menu {
-                    width:  23vw;
+                    width: 23vw;
                     height: 54px;
                     background-color: #258FFF;
                     display: flex;
                     flex-wrap: wrap;
                     margin: 0;
+                    padding: 0;
+                    gap: 4rem;
+                    list-style: none;
+                    justify-content: center;
+                    text-align: center;
 
                     .menu_tap_1,
                     .menu_tap_2,
                     .menu_tap_3 {
-                        margin-top: 15px;
-                        padding-left: 30px;
-                        padding-right: 40px;
-                        list-style: none;
-                        text-align: center;
+                        position: relative;
+                        color: #ffffff;
+                        display: grid;
+                        place-content: center;
+                        display: inline-block;
 
                         a {
                             color: #f6f6f6;
                             text-decoration: none;
-                        }
-
-                        a:hover {
-                        background-color: #1b6bc1;
-                        color: #ffffff;
-                        }
-
-                        & :hover {
-                            background-color: #1b6bc1;
+                            position: relative;
+                            padding-bottom: 5px; // 밑줄을 위한 패딩 추가
                         }
                     }
+                }
+
+                .navBar::before {
+                    content: "";
+                    position: absolute;
+                    width: 100%;
+                    height: 2px;
+                    background-color: #ffffff;
+                    border-radius: 5px;
+                    transform: scaleX(0);
+                    transition: all 0.5s ease;
+                    bottom: 0;
+                    left: 0;
+                }
+
+                a:hover::before {
+                    transform: scaleX(1); // hover 시 전체 너비로 확장
                 }
             }
         }
 
-
         .content_container {
-            width:  23vw;
+            width: 23vw;
+            height: calc(100vh - 170px); /* 상단 헤더 높이를 제외한 높이 설정 */
+            overflow-y: auto; /* 내용이 많을 때 스크롤 생기도록 설정 */
         }
 
-
-
-
-
-
-
-
-        
         .roadview_control_container {
             position: relative;
-            
 
             .roadview_container {
                 position: relative;
-                
                 top: 0;
                 left: 0;
             }
 
             .roadview_button {
                 position: relative;
-                
+                background-color: #fff;
+                border: 1.5px solid #258FFF;
+                color: #258FFF; /* 텍스트 색상 */
+                padding: 0.5em 1.2em;
+                border-radius: 0.6em;
+                cursor: pointer;
+                transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+
+                &:hover {
+                    box-shadow: 0 0 40px 40px #258FFF inset;
+                    color: #ffffff;
+                }
             }
         }
 
-
         .search_list_container {
-            position: absolute;
-            margin-top: 380px;
+            height: calc(100% - 380px); /* 상단 요소 제외한 높이 설정 */
+            overflow-y: auto; /* 검색 결과 컨테이너에만 스크롤 적용 */
+            padding-right: 10px; /* 스크롤바와 내용 간의 간격 추가 */
         }
-
 
         .map_display {
             position: relative;
             width: 77vw;
             height: 90vh;
             z-index: 2;
-            
+
             .roadview_container {
                 position: absolute;
                 z-index: 3;
                 top: 11px;
                 right: 140px;
-
-                .roadview_size {
-                    
-                }
             }
         }
     }

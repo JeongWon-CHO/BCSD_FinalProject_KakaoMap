@@ -1,43 +1,55 @@
 import React, { useState, useEffect } from 'react';
 import { getMap } from '../utils/KakaoMapApi';
-import axios from "axios";
+import axios from 'axios';
 
 function LocationInfo({ lat, lng }) {
+    const [locationData, setLocationData] = useState(null);
 
-    const map = getMap();
-    if (!map) {
-        console.error("지도가 없습니다!");
-        return;
-    }
-
-
-    navigator.geolocation.getCurrentPosition(function(pos) {
-        console.log(pos);
-        console.log("현재 위치는 : " + lat + ", "+ lng);
-    });
-
-    function onGeoOk(position){
-        //kakao REST API에 get 요청을 보낸다.
-        //파라미터 x,y에 lon,lat을 넣어주고 API_KEY를 Authorization헤더에 넣어준다.
-        axios.get(`https://dapi.kakao.com/v2/local/geo/coord2address.json?x=${lat}&y=${lng}&input_coord=WGS84`
-        ,{headers:{Authorization:`KakaoAK ${process.env.REACT_APP_KAKAO_KEY}`}}
-        )
-        .then(res=>{
-            console.log(res.data.documents)
-            
+    useEffect(() => {
+        const map = getMap();
+        if (!map) {
+            console.error("지도가 없습니다!");
+            return;
         }
-        ).catch(e=>console.log(e))
-    }
-    function onGeoError(){
-        alert("위치권한을 확인해주세요");
-    }
 
-	//navigator.geolocation.getCurrentPosition(위치받는함수, 에러났을때 함수)
-	navigator.geolocation.getCurrentPosition(onGeoOk,onGeoError)
+        const onGeoOk = (position) => {
+            console.log("현재 위치는 : " + lat + ", " + lng);
 
-    return(
+            // 카카오 REST API에 GET 요청을 보낸다.
+            axios.get(`https://dapi.kakao.com/v2/local/geo/coord2address.json?x=${lng}&y=${lat}&input_coord=WGS84`, {
+                headers: { Authorization: `KakaoAK ${process.env.REACT_APP_KAKAO_KEY}` }
+            })
+                .then(res => {
+                    console.log(res.data.documents);
+                    setLocationData(res.data.documents); // 상태에 응답 데이터 저장
+                })
+                .catch(e => console.log(e));
+        };
+
+        const onGeoError = () => {
+            alert("위치 권한을 확인해주세요.");
+        };
+
+        // 현재 위치를 가져온다.
+        navigator.geolocation.getCurrentPosition(onGeoOk, onGeoError);
+
+    }, [lat, lng]);
+
+    return (
         <div>
-
+            {locationData ? (
+                <div>
+                    <h3>주소 정보</h3>
+                    {locationData.map((doc, index) => (
+                        <div key={index}>
+                            <p>주소: {doc.address.address_name}</p>
+                            <p>건물명: {doc.address.building_name || 'N/A'}</p>
+                        </div>
+                    ))}
+                </div>
+            ) : (
+                <p>위치 정보를 가져오는 중...</p>
+            )}
         </div>
     );
 }

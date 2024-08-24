@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, NavLink } from 'react-router-dom';
 
 import PlaceSearchPage from '../page/PlaceSearchPage';
-import DirectionsPage from '../page/DirectionsPage';
+import FavoritePage from './FavoritePage';
 import MyPage from '../page/MyPage';
 
 import MapControls from '../component/MapControls';
@@ -52,13 +52,13 @@ function MapPage() {
                         <div className={style.map_menu_container}>
                             <ul className={style.map_menu}>
                                 <li className={style.menu_tap_1}>
-                                    <NavLink to="/search" className={({ isActive }) => isActive ? style.active : undefined}>검색</NavLink>
+                                    <NavLink to="/search" className={style.navBar}>검색</NavLink>
                                 </li>
                                 <li className={style.menu_tap_2}>
-                                    <NavLink to="/directions" className={({ isActive }) => isActive ? style.active : undefined}>길찾기</NavLink>
+                                    <NavLink to="/directions" className={style.navBar}>즐겨찾기</NavLink>
                                 </li>
                                 <li className={style.menu_tap_3}>
-                                    <NavLink to="/my" className={({ isActive }) => isActive ? style.active : undefined}>MY</NavLink>
+                                    <NavLink to="/my" className={style.navBar}>기록</NavLink>
                                 </li>
                             </ul>
                         </div>
@@ -66,7 +66,7 @@ function MapPage() {
                         <div className={style.content_container}>
                             <Routes>
                                 <Route path="/search" element={<PlaceSearchPage searchKeyword={searchKeyword} handleSearch={handleSearch} />} />
-                                <Route path="/directions" element={<DirectionsPage />} />
+                                <Route path="/directions" element={<FavoritePage />} />
                                 <Route path="/my" element={<MyPage />} />
                                 <Route path="/" element={<PlaceSearchPage searchKeyword={searchKeyword} handleSearch={handleSearch} />} />
                             </Routes>

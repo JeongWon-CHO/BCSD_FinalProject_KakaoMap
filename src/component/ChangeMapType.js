@@ -3,44 +3,51 @@ import { getMap } from '../utils/KakaoMapApi';
 import styles from '../component/ChangeMapType.module.scss';
 
 function ChangeMapType() {
-
-  const [type, setType] = useState("");
+  const [type, setType] = useState("normal"); 
+  const [currentMapTypeId, setCurrentMapTypeId] = useState(null);
 
   useEffect(() => {
     const map = getMap();
-    if (!map) {
-      console.error("지도가 없습니다.");
+    if (!map || !window.kakao || !window.kakao.maps || !window.kakao.maps.MapTypeId) {
+      console.error("지도가 없거나 Kakao Maps API가 로드되지 않았습니다.");
       return;
     }
 
-    let mapTypeId;
+    let newMapTypeId;
 
     switch (type) {
       case 'traffic':
-        mapTypeId = window.kakao.maps.MapTypeId.TRAFFIC;
+        newMapTypeId = window.kakao.maps.MapTypeId.TRAFFIC;
         break;
       case 'roadview':
-        mapTypeId = window.kakao.maps.MapTypeId.ROADVIEW;
+        newMapTypeId = window.kakao.maps.MapTypeId.ROADVIEW;
         break;
       case 'terrain':
-        mapTypeId = window.kakao.maps.MapTypeId.TERRAIN;
+        newMapTypeId = window.kakao.maps.MapTypeId.TERRAIN;
         break;
       case 'use_district':
-        mapTypeId = window.kakao.maps.MapTypeId.USE_DISTRICT;
+        newMapTypeId = window.kakao.maps.MapTypeId.USE_DISTRICT;
         break;
       case 'normal':
-        mapTypeId = window.kakao.maps.MapTypeId.NORMAL;
-        break;
       default:
-        return;
+        newMapTypeId = window.kakao.maps.MapTypeId.NORMAL;
+        break;
     }
 
-    map.addOverlayMapTypeId(mapTypeId);
+    // 현재 적용된 맵 타입을 제거
+    if (currentMapTypeId && currentMapTypeId !== window.kakao.maps.MapTypeId.NORMAL) {
+      map.removeOverlayMapTypeId(currentMapTypeId);
+    }
 
-    return () => {
-      map.removeOverlayMapTypeId(mapTypeId);
-    };
-  }, [type]);
+    // 새로운 맵 타입을 추가
+    if (newMapTypeId !== window.kakao.maps.MapTypeId.NORMAL) {
+      map.addOverlayMapTypeId(newMapTypeId);
+    }
+
+    // 현재 적용된 맵 타입을 상태로 저장
+    setCurrentMapTypeId(newMapTypeId);
+
+  }, [type, currentMapTypeId]);
 
   return (
     <div className={styles.container_btn}>

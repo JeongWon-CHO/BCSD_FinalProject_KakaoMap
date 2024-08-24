@@ -1,0 +1,51 @@
+.title_record {
+    margin-top: 30px;
+    margin-left: 30px;
+}
+
+.list_record {
+    margin-left: 10px;
+    margin-bottom: 15px;
+    font-family: 'notosanskr';
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.record_content {
+    cursor: pointer;
+    flex: 1;
+    margin-bottom: 20px;
+    max-width: 255px;
+}
+
+.record_title {
+    font-size: 1.2em;
+    margin: 0;
+    font-weight: bold;
+}
+
+.record_memo {
+    margin: 5px 0 0;
+    color: #555;
+    font-size: 0.9em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 255px;
+}
+
+.remove_button {
+    margin-left: 10px;
+    margin-right: 20px;
+    padding: 4px 8px;
+    background-color: #ff6666;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+}
+
+.remove_button:hover {
+    background-color: #ff5050;
+}
