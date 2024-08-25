@@ -1,70 +1,49 @@
-# Getting Started with Create React App
+# 카카오맵 api를 이용한 지도 기록 서비스
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+이 프로젝트는 [Create React App](https://github.com/facebook/create-react-app) 에서 부트스트랩 되었습니다.
 
-## Available Scripts
+해당 프로젝트는 카카오맵 api를 이용한 지도 기록 서비스입니다. 주요 기능으로는 원하는 장소에 대해 나만의 기록을 남길 수 있는 기능이 있습니다.
 
-In the project directory, you can run:
+## 페이지 소개
 
-### `npm start`
+메인페이지, 검색, 즐겨찾기, 기록 페이지가 있습니다.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### `메인페이지`
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+초기 시작 페이지입니다.
 
-### `npm test`
+### `검색`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+다양한 검색 기능이 포함되어 있는 페이지입니다.
 
-### `npm run build`
+### `즐겨찾기`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+지도에서 좋아요를 누른 장소들을 모아볼 수 있는 페이지입니다.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### `기록`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+지도에서 나만의 기록을 남긴 장소들을 모아볼 수 있는 페이지입니다.
 
-### `npm run eject`
+## 주요기능
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+키워드 검색, 지도 모드 변경, 카테고리별 검색, 글쓰기, 좋아요 기능이 있습니다.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### `키워드 검색`
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+지도에서 키워드(Ex. 병천 맛집)로 검색할 수 있습니다.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### `지도 모드 변경`
 
-## Learn More
+기본, 교통정보, 로드뷰, 지형도, 지적편집도의 모드로 지도를 볼 수 있습니다.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### `카테고리별 검색`
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+편의점, 음식점, 은행, 주자창, 카페에 해당하는 장소를 모아볼 수 있습니다.
 
-### Code Splitting
+### `글쓰기`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+표시한 특정 장소에 나만의 메모를 남길 수 있습니다.
 
-### Analyzing the Bundle Size
+### `좋아요`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+표시한 특정 장소에 '좋아요'를 눌러 즐겨찾기에 추가할 수 있습니다.
