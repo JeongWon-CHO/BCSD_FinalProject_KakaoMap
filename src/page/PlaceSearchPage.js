@@ -1,5 +1,4 @@
 import React from 'react';
-import PlaceSearchInput from '../component/PlaceSearchInput';
 import PlaceSearchResults from '../component/PlaceSearchResults';
 import ChangeMapType from '../component/ChangeMapType';
 import CategorySearch from '../component/CategorySearch';

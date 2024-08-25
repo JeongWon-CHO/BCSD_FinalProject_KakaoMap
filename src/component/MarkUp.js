@@ -12,8 +12,7 @@ function MarkUp({ markersVisible }) {
   const [markers, setMarkers] = useState([]);
   const [isModalOpen, setModalOpen] = useState(false);
   const [currentLatLng, setCurrentLatLng] = useState({ lat: null, lng: null });
-  const [selectedMarker, setSelectedMarker] = useState(null);
-
+  
   const addMemo = useMemoStore((state) => state.addMemo);
   const addFavorite = useFavoriteStore((state) => state.addFavorite);
 
@@ -50,42 +49,54 @@ function MarkUp({ markersVisible }) {
 
       setMessage(mes);
 
+      // 새 마커 생성
       const newMarker = new window.kakao.maps.Marker({
         position: latlng,
         map: map,
         clickable: true,
       });
 
-      setMarkers((prevMarkers) => [...prevMarkers, newMarker]);
-      setSelectedMarker(newMarker);
-
-      // React에서 HTML 요소를 만들어서 커스텀 인포윈도우로 삽입
+      // 마커와 연결된 인포윈도우 생성 및 관리
       const infoWindowDiv = document.createElement('div');
       const root = createRoot(infoWindowDiv);
+
       root.render(
         <InfoWindowContent
           message={mes}
           onWriteMemo={() => setModalOpen(true)}
-          onLike={() => addFavorite(mes, lat, lng)}
+          onLike={() => {
+            alert("즐겨찾기에 추가되었습니다!");
+            addFavorite(mes, lat, lng);
+          }}
           onClose={() => {
+            // 마커와 인포윈도우 삭제
+            newMarker.setMap(null);
             if (infoWindowDiv) {
               infoWindowDiv.style.display = 'none';
             }
+            root.unmount();
+            setMarkers((prevMarkers) => prevMarkers.filter(marker => marker !== newMarker));
           }}
         />
       );
 
-      // 커스텀 인포윈도우를 마커 위에 표시
+      // 인포윈도우를 마커 위에 표시
       const projection = map.getProjection();
       const point = projection.containerPointFromCoords(latlng);
 
+      const offsetX = -30; // 인포윈도우의 절반 너비만큼 좌우로 이동
+      const offsetY = -10; // 인포윈도우의 높이만큼 위로 이동
+
       infoWindowDiv.style.position = 'absolute';
-      infoWindowDiv.style.left = `${point.x}px`;
-      infoWindowDiv.style.top = `${point.y}px`;
-      infoWindowDiv.style.transform = 'translate(-50%, -100%)';
+      infoWindowDiv.style.left = `${point.x + offsetX}px`;
+      infoWindowDiv.style.top = `${point.y + offsetY}px`;
       infoWindowDiv.style.zIndex = 3;
 
       map.getNode().appendChild(infoWindowDiv);
+
+      // 마커가 닫힐 때 인포윈도우와 마커 모두 삭제
+      newMarker.infowindowDiv = infoWindowDiv;
+      setMarkers((prevMarkers) => [...prevMarkers, newMarker]);
 
       return () => {
         root.unmount(); // React 18에서의 unmount 호출
@@ -109,6 +120,9 @@ function MarkUp({ markersVisible }) {
     if (map) {
       markers.forEach((marker) => {
         marker.setVisible(markersVisible);
+        if (marker.infowindowDiv) {
+          marker.infowindowDiv.style.display = markersVisible ? 'block' : 'none';
+        }
       });
     }
   }, [markersVisible, markers]);
@@ -134,6 +148,13 @@ function MarkUp({ markersVisible }) {
       if (map) {
         window.kakao.maps.event.removeListener(map, 'click', handleClick);
       }
+
+      markers.forEach((marker) => {
+        if (marker.infowindowDiv) {
+          marker.infowindowDiv.style.display = 'none';
+        }
+        marker.setMap(null);
+      });
     };
   }, []);
 

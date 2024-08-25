@@ -1,10 +1,10 @@
 import React from 'react';
 import styles from './MainPageBody2.module.scss';
+import icon_kakako from '../img/MainPage/icon_kakaomap.png';
 
 function MainPageBody2() {
     return (
         <div>
-            
 
             <div className={styles.blankSpace}></div>
             
@@ -13,9 +13,8 @@ function MainPageBody2() {
             </div>
 
             <div className={styles.divCenter}>
-                <span className={styles.boxBackground}></span>
-                <span className={styles.boxBackground}></span>
-                <span className={styles.boxBackground}></span>
+                <img src={icon_kakako} className={styles.icon_img}></img>
+                <p className={styles.paragraph}>대한민국에서 가장 빠른 길을 안내하는<br />카카오맵!</p>
             </div>
 
         </div>

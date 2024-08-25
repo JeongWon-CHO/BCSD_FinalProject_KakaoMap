@@ -13,20 +13,36 @@ function FavoritePage() {
             console.error("지도가 없습니다.");
             return;
         }
-
+    
         const position = new window.kakao.maps.LatLng(lat, lng);
         map.setCenter(position);
-
+    
+        const shortFavorite = favorite.length > 8 ? favorite.substring(0, 8) + '...' : favorite;
+    
         const marker = new window.kakao.maps.Marker({
             position: position,
             map: map,
         });
-
+    
         const infowindow = new window.kakao.maps.InfoWindow({
-            content: `<div>${favorite}</div>`,
+            content: `
+                <div style="
+                    padding: 10px;
+                    padding-left: 20px;
+                    padding-right: 25px;
+                    border: 1px solid #258FFF;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    box-shadow: none;
+                    border-radius: 0;
+                    max-width: 200px;
+                ">
+                ${shortFavorite}
+            </div>`,
             removable: true,
         });
-
+    
         infowindow.open(map, marker);
     };
 

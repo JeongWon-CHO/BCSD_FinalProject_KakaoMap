@@ -73,7 +73,7 @@ function CategorySearch() {
 
     return (
         <div>
-            <div id="category-buttons">
+            <div className={style.category_buttons}>
                 <button onClick={removeMarkers} className={style.btn_clean}>초기화</button>
                 <button onClick={() => handleCategoryClick('CS2')} className={style.btn_convenience}>편의점</button>
                 <button onClick={() => handleCategoryClick('FD6')} className={style.btn_restaurant}>음식점</button>

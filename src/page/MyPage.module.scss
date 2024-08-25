@@ -1,15 +1,20 @@
 .title_record {
     margin-top: 30px;
     margin-left: 30px;
+    margin-bottom: 40px;
 }
 
 .list_record {
-    margin-left: 10px;
     margin-bottom: 15px;
     font-family: 'notosanskr';
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
+    transition: color 0.3s ease;
+            
+    &:hover {
+        color: #258FFF;
+    }
 }
 
 .record_content {
@@ -37,7 +42,7 @@
 
 .remove_button {
     margin-left: 10px;
-    margin-right: 20px;
+    margin-right: 30px;
     padding: 4px 8px;
     background-color: #ff6666;
     border: none;

@@ -1,8 +1,7 @@
 .container_btn {
-    /*    
     display: flex;
     justify-content: center;
-    */
+    gap: 0.6rem;
 }
 
 .btn_traffic,
@@ -10,20 +9,15 @@
 .btn_terrain,
 .btn_useDistrict,
 .btn_nomal {
-
     width: 60px;
     height: 20px;
-
     background-color: #ffffff;
-    
-    margin-left: 5px;
-    margin-right: 10px;
-
     border: none;
-
     font-size: 12px;
-
-    &:hover{
-        background-color: #f8f8f8;
+    margin-top: 10px;
+    transition: color 0.3s ease;
+            
+    &:hover {
+        color: #258FFF;
     }
 }

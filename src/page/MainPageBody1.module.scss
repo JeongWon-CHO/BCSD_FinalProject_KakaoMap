@@ -1,17 +1,57 @@
+.title {
+    font-size: 48px;
+    text-align: center;
+    font-weight: bold;
+    font-family: sans-serif;
+    opacity: 0;
+    animation: fadein 3s forwards;
+}
+
 .divCenter {
     text-align: center;
+    display: flex;
+    justify-content: center;
     height: 55vh;
+    gap: 80px;
 
-    .boxBackground {
+    .boxBackground1,
+    .boxBackground2,
+    .boxBackground3 {
         width: 300px;
         height: 300px;
         margin: 20px;
-        background-color: #FEE500;
         display: inline-block;
-        
-        &:hover {
-            transition: all 1s;
-            background-color: #FFF06B;
-        }
+        opacity: 0;
+        transition: opacity 1s ease-in-out;
+    }
+
+    .boxBackground1 {
+        animation: fadein 3s forwards;
+        animation-delay: 1s;
+    }
+
+    .boxBackground2 {
+        animation: fadein 3s forwards;
+        animation-delay: 1.2s;
+    }
+
+    .boxBackground3 {
+        animation: fadein 3s forwards;
+        animation-delay: 1.4s;
+    }
+
+    .boxBackground1:hover,
+    .boxBackground2:hover,
+    .boxBackground3:hover {
+        opacity: 0.5;
+    }
+}
+
+@keyframes fadein {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
     }
 }

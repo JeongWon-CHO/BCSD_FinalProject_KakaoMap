@@ -7,6 +7,7 @@ function MemoModal({ onClose, onSave }) {
     const handleSave = () => {
         onSave(memo);
         onClose();
+        alert("저장되었습니다.");
     };
 
     return (

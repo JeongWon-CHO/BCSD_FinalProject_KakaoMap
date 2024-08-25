@@ -14,16 +14,23 @@ function PlaceSearchInput({ onSearch }) {
         onSearch(keyword);
     };
 
+    const handleKeyDown = (e) => {
+        if (e.key === 'Enter') {
+            handleSearchClick();
+        }
+    };
+
     return (
         <div className={style.searchContainer}>
         <input
             type="text"
             value={keyword}
             onChange={handleInputChange}
+            onKeyDown={handleKeyDown}
             placeholder="장소, 주소 검색"
             className={style.searchBox}
         />
-        <button className={style.searchButton} onClick={handleSearchClick}> {/* Bind handleSearch to the button */}
+        <button className={style.searchButton} onClick={handleSearchClick}>
             <img src={search_img} alt='검색' className={style.search_icon} />
         </button>
 

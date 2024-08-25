@@ -4,7 +4,7 @@ import style from './InfoWindowContent.module.scss';
 const InfoWindowContent = ({ message, onWriteMemo, onLike, onClose }) => {
     return (
         <div className={style.infowindow}>
-            <div>{message}</div>
+            <div className={style.infowindewMessage}>{message}</div>
             <br />
             <button onClick={onWriteMemo}>글쓰기</button>
             <button onClick={onLike}>좋아요</button>

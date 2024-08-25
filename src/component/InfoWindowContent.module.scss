@@ -8,12 +8,16 @@
     margin-left: -105px;
     transform: translateY(-150px); /* 인포윈도우를 위로 이동 */
     position: relative;
+
+    .infowindewMessage {
+        margin-top: 10px;
+    }
 }
 
 
 .infowindow button {
-    margin-top: 10px;
     padding: 8px 12px;
+    margin-right: 5px;
     background-color: #258fff;
     border: none;
     border-radius: 4px;

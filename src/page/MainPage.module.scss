@@ -43,6 +43,10 @@
   cursor: pointer;
   overflow: hidden;
 
+  opacity: 0;
+  animation: fadein 3s forwards;
+  animation-delay: 2s;
+
   &::before,
   &::after {
     position: absolute;
@@ -74,5 +78,14 @@
       opacity: 1;
       transform: scaleX(1.2);
     }
+  }
+}
+
+@keyframes fadein {
+  from {
+      opacity: 0;
+  }
+  to {
+      opacity: 1;
   }
 }
